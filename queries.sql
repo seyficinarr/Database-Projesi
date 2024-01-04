@@ -690,3 +690,33 @@ INSERT INTO Martı_location_history (Martı_id, date, longitude, latitude, time)
 (4, '2023-01-04 15:23:32', 41.3678, 28.7145, '15:23:32'),
 (4, '2023-01-05 12:33:11', 41.2696, 28.6008, '12:33:11'),
 (5, '2023-01-05 13:41:21', 42.2359, 29.3316, '13:41:21');
+
+INSERT INTO İzban (izban_id, price, first_station_name, last_station_name) VALUES
+(1, 54.59, 'Aliaga', 'Selcuk'),
+(2, 15.01, 'Aliaga', 'Menemen'),
+(3, 45.39, 'Menemen', 'Cumaovasi'),
+(4, 25.87, 'Cumaovasi', 'Selcuk');
+
+INSERT INTO Station (name, county, previous_station_name, next_station_name) VALUES
+('Aliaga', 'Aliaga', null, 'Bicerova'),
+('Menemen', 'Menemen', 'Hatundere', 'Egekent-2'),
+('Cumaovasi', 'Cumaovasi', 'Havalimani', 'Develi'),
+('Selcuk', 'Selcuk', 'Belevi', null),
+('Hilal', 'Konak', 'Alsancak', 'Kemer'),
+('Kemer', 'Konak', 'Hilal', 'Sirinyer'),
+('Sirinyer', 'Buca', 'Kemer', 'Kosu'),
+('Kosu', 'Buca', 'Sirinyer', 'Inkilap'),
+('Inkilap', 'Buca', 'Kosu', 'Semt Garaji'),
+('Semt Garaji', 'Gaziemir', 'Inkilap', 'Esbas'),
+('Esbas', 'Gaziemir', 'Semt Garaji', 'Gaziemir'),
+('Gaziemir', 'Gaziemir', 'Esbas', 'Sarnic');
+
+INSERT INTO Izban_Voyage (izban_id, voyage_instance_id, start_date, start_time, finish_date, finish_time, duration_time, refund_amount, first_station_name, last_station_name) VALUES
+(1, 1, '2023-01-05', '12:00:00', '2023-01-05', '13:12:00', 72, 17.11, 'Aliaga', 'Selcuk'),
+(1, 2, '2023-01-05', '08:00:00', '2023-01-05', '09:12:00', 72, 10.18, 'Aliaga', 'Selcuk'),
+(2, 3, '2023-01-05', '11:00:00', '2023-01-05', '11:30:00', 30, 16.21, 'Aliaga', 'Menemen'),
+(2, 4, '2023-01-06', '13:30:00', '2023-01-06', '14:00:00', 30, 8.55, 'Aliaga', 'Menemen'),
+(3, 5, '2023-01-06', '16:30:00', '2023-01-06', '17:12:00', 42, 12.26, 'Menemen', 'Cumaovasi'),
+(3, 6, '2023-01-05', '08:30:00', '2023-01-05', '09:12:00', 42, 9.35, 'Menemen', 'Cumaovasi'),
+(4, 7, '2023-01-06', '19:45:00', '2023-01-06', '20:25:00', 40, 11.45, 'Cumaovasi', 'Selcuk'),
+(4, 8, '2023-01-07', '22:15:00', '2023-01-07', '22:55:00', 40, 16.33, 'Cumaovasi', 'Selcuk');
