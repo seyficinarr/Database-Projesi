@@ -1287,7 +1287,49 @@ VALUES
 (19, 1, 150, 250.00, 50.00, 300.00, 30.00, 10.00, 1),
 (20, 1, 140, 180.00, 35.00, 215.00, 18.00, 7.00, 10);
 
+INSERT INTO Customer (customer_id, FName, Lname, surname, language, TCKN, passport_no, nationality, sex ,city, country, street , phone_number, gmail, birthday) VALUES
+(1, 'John', 'Doe', 'Smith', 'English', '12345678901', 'ABC123456', 'USA', 'Male', 'New York', 'United States', '123 Main St', '+1234567890', 'john.doe@gmail.com', '1990-01-15'),
+(2, 'Jane', 'Smith', 'Doe', 'English', '98765432109', 'XYZ987654', 'Canada', 'Female', 'Toronto', 'Canada', '456 Oak St', '+0987654321', 'jane.smith@gmail.com', '1985-08-20'),
+(3, 'Robert', 'Johnson', 'White', 'Spanish', '23456789012', 'RJW345678', 'Spain', 'Male', 'Madrid', 'Spain', '789 Maple St', '+2345678901', 'robert.johnson@gmail.com', '1978-03-10'),
+(4, 'Emily', 'Brown', 'Davis', 'French', '34567890123', 'EBD456789', 'France', 'Female', 'Paris', 'France', '234 Birch St', '+3456789012', 'emily.brown@gmail.com', '1995-05-25'),
+(5, 'Ahmet', 'Yılmaz', 'Çelik', 'Turkish', '12345678902', 'AYC123457', 'Turkey', 'Male', 'Istanbul', 'Turkey', '567 Pine St', '+1234567891', 'ahmet.yilmaz@gmail.com', '1982-12-18'),
+(6, 'Ayşe', 'Kaya', 'Şahin', 'Turkish', '23456789013', 'AKS234567', 'Turkey', 'Female', 'Ankara', 'Turkey', '789 Cedar St', '+2345678902', 'ayse.kaya@gmail.com', '1991-06-30'),
+(7, 'Mehmet', 'Arslan', 'Demir', 'Turkish', '34567890124', 'MAD345678', 'Turkey', 'Male', 'Izmir', 'Turkey', '890 Oak St', '+3456789013', 'mehmet.arslan@gmail.com', '1975-09-12'),
+(8, 'Zeynep', 'Öztürk', 'Aksoy', 'Turkish', '45678901235', 'ZOA456789', 'Turkey', 'Female', 'Antalya', 'Turkey', '123 Birch St', '+4567890123', 'zeynep.ozturk@gmail.com', '1988-04-03'),
+(9, 'Michael', 'Jordan', 'Brown', 'English', '45678901234', 'MJK567890', 'Australia', 'Male', 'Sydney', 'Australia', '789 Pine St', '+9876543210', 'michael.jordan@gmail.com', '1973-02-17'),
+(10, 'Mia', 'Williams', 'Johnson', 'English', '56789012345', 'MWJ987654', 'India', 'Female', 'Mumbai', 'India', '890 Cedar St', '+8765432109', 'mia.williams@gmail.com', '1988-11-30'),
+(11, 'Ali', 'Yılmaz', 'Koç', 'Turkish', '56789012346', 'AYK567890', 'Turkey', 'Male', 'Bursa', 'Turkey', '456 Maple St', '+5678901234', 'ali.yilmaz@gmail.com', '1993-07-22'),
+(12, 'Aysun', 'Demir', 'Çetin', 'Turkish', '67890123456', 'ADC678901', 'Turkey', 'Female', 'Izmir', 'Turkey', '234 Oak St', '+6789012345', 'aysun.demir@gmail.com', '1980-10-14'),
+(13, 'David', 'Anderson', 'Smith', 'English', '78901234567', 'DAS789012', 'Canada', 'Male', 'Vancouver', 'Canada', '567 Cedar St', '+7890123456', 'david.anderson@gmail.com', '1970-04-28'),
+(14, 'Elif', 'Kurt', 'Güneş', 'Turkish', '89012345678', 'EKG890123', 'Turkey', 'Female', 'Istanbul', 'Turkey', '345 Birch St', '+8901234567', 'elif.kurt@gmail.com', '1997-09-05'),
+(15, 'Cem', 'Öztürk', 'Gür', 'Turkish', '90123456789', 'COG901234', 'Turkey', 'Male', 'Ankara', 'Turkey', '678 Maple St', '+9012345678', 'cem.ozturk@gmail.com', '1987-01-08'),
+(16, 'Olivia', 'Martin', 'Johnson', 'English', '12345678910', 'OMJ123456', 'USA', 'Female', 'Los Angeles', 'United States', '456 Pine St', '+1234567899', 'olivia.martin@gmail.com', '1994-11-15'),
+(17, 'Can', 'Aydın', 'Güneş', 'Turkish', '23456789014', 'CAG234567', 'Turkey', 'Male', 'Antalya', 'Turkey', '789 Cedar St', '+2345678903', 'can.aydin@gmail.com', '1996-03-19'),
+(18, 'Leyla', 'Arslan', 'Yıldız', 'Turkish', '34567890125', 'LAY345678', 'Turkey', 'Female', 'Izmir', 'Turkey', '890 Oak St', '+3456789014', 'leyla.arslan@gmail.com', '1983-06-27'),
+(19, 'Eren', 'Şahin', 'Kaya', 'Turkish', '45678901236', 'ESK456789', 'Turkey', 'Male', 'Istanbul', 'Turkey', '123 Main St', '+4567890124', 'eren.sahin@gmail.com', '1992-02-14'),
+(20, 'Melis', 'Güzel', 'Koç', 'Turkish', '56789012347', 'MGK567890', 'Turkey', 'Female', 'Ankara', 'Turkey', '234 Birch St', '+5678901235', 'melis.guzel@gmail.com', '1986-07-03');
 
+INSERT INTO Card (Card_id, customer_id, balance_amount) VALUES
+(1, 1, 1000.00),
+(2, 2, 1500.50),
+(3, 3, 2000.25),
+(4, 4, 1200.75),
+(5, 5, 800.00),
+(6, 6, 2500.50),
+(7, 7, 1800.25),
+(8, 8, 3000.75),
+(9, 9, 1600.00),
+(10, 10, 900.50),
+(11, 11, 1300.25),
+(12, 12, 2200.75),
+(13, 13, 1700.00),
+(14, 14, 1400.50),
+(15, 15, 1900.25),
+(16, 16, 2800.75),
+(17, 17, 1100.00),
+(18, 18, 2400.50),
+(19, 19, 2100.25),
+(20, 20, 2600.75);
 
 
 
