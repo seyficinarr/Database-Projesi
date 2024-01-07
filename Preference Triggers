@@ -1,0 +1,135 @@
+CREATE TRIGGER update_preferences_on_reservation
+ON Marti_Rezervation
+AFTER INSERT
+AS
+BEGIN
+    DECLARE @Card_id INT;
+
+    SELECT @Card_id = Card_id
+    FROM inserted;
+
+    UPDATE Preferences
+    SET marti_preference = 1
+    WHERE Card_id = @Card_id;
+
+    -- Add a message
+    PRINT 'Marti_Rezervation preference updated for Card_id: ' + CAST(@Card_id AS VARCHAR);
+END;
+
+--Trigger for updating preference after ferry ticket
+CREATE TRIGGER update_preferences_after_ferry_ticket
+ON Ferry_Ticket
+AFTER INSERT
+AS
+BEGIN
+    DECLARE @Card_id INT;
+
+    SELECT @Card_id = Card_id
+    FROM inserted;
+
+    UPDATE Preferences
+    SET ferry_preference = 1
+    WHERE Card_id = @Card_id;
+
+    -- Add a message
+    PRINT 'Ferry_ticket preference updated for Card_id: ' + CAST(@Card_id AS VARCHAR);
+END;
+
+--Trigger for updating preference after bus ticket
+CREATE TRIGGER update_preferences_after_bus_ticket
+ON bus_ticket
+AFTER INSERT
+AS
+BEGIN
+    DECLARE @Card_id INT;
+
+    SELECT @Card_id = Card_id
+    FROM inserted;
+
+    UPDATE Preferences
+    SET bus_preference = 1
+    WHERE Card_id = @Card_id;
+
+    -- Add a message
+    PRINT 'Bus preference updated for Card_id: ' + CAST(@Card_id AS VARCHAR);
+END;
+
+
+
+--Trigger for updating preference after izban journey
+CREATE TRIGGER update_preferences_after_izban_journey
+ON Izban_journey
+AFTER INSERT
+AS
+BEGIN
+    DECLARE @Card_id INT;
+
+    SELECT @Card_id = Card_id
+    FROM inserted;
+
+    UPDATE Preferences
+    SET izban_preference = 1
+    WHERE Card_id = @Card_id;
+
+    -- Add a message
+    PRINT 'Izban preference updated for Card_id: ' + CAST(@Card_id AS VARCHAR);
+END;
+
+--Trigger for updating preference after train ticket
+CREATE TRIGGER update_preferences_after_train_ticket
+ON Train_Ticket
+AFTER INSERT
+AS
+BEGIN
+    DECLARE @Card_id INT;
+
+    SELECT @Card_id = Card_id
+    FROM inserted;
+
+    UPDATE Preferences
+    SET train_preference = 1
+    WHERE Card_id = @Card_id;
+
+    -- Add a message
+    PRINT 'Train preference updated for Card_id: ' + CAST(@Card_id AS VARCHAR);
+END;
+
+
+--Trigger for updating preference after flight ticket
+CREATE TRIGGER update_preferences_after_flight_ticket
+ON Flight_Ticket
+AFTER INSERT
+AS
+BEGIN
+    DECLARE @Card_id INT;
+
+    SELECT @Card_id = Card_id
+    FROM inserted;
+
+    UPDATE Preferences
+    SET airplane_trip_preference = 1
+    WHERE Card_id = @Card_id;
+
+    -- Add a message
+    PRINT 'Flight preference updated for Card_id: ' + CAST(@Card_id AS VARCHAR);
+END;
+
+
+--Trigger for updating preference after car rezervation
+CREATE TRIGGER update_preferences_after_car_rezervation
+ON Car_rent_rezervation
+AFTER INSERT
+AS
+BEGIN
+    DECLARE @Card_id INT;
+
+    SELECT @Card_id = Card_id
+    FROM inserted;
+
+    UPDATE Preferences
+    SET car_rent_preference = 1
+    WHERE Card_id = @Card_id;
+
+    -- Add a message
+    PRINT 'Renting a car preference updated for Card_id: ' + CAST(@Card_id AS VARCHAR);
+END;
