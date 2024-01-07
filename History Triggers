@@ -1,0 +1,51 @@
+--Trigger for updating history after flight_ticket
+CREATE TRIGGER tr_insert_flight_ticket_history
+ON Flight_Ticket
+AFTER INSERT
+AS
+BEGIN
+    DECLARE @Card_id INT;
+    SELECT @Card_id = Card_id
+    FROM inserted;
+
+    INSERT INTO History (Card_id, operation_date, operation_time, transportation_type, departure_place, destination, payment_amount)
+    SELECT i.Card_id, GETDATE(), GETDATE(), 'Flight', f.departure_airport_code, f.arrival_airport_code, (fl.base_fare + fl.fuel_surcharge + fl.taxes + fl.ticket_service_fee)
+    FROM inserted i
+    INNER JOIN Flight_Leg fl ON i.flight_id = fl.flight_id AND i.leg_id = fl.leg_id
+    INNER JOIN Flight f ON fl.flight_id = f.flight_id
+    PRINT 'History is updated for Card_id: ' + CAST(@Card_id AS VARCHAR);
+END;
+
+
+--Trigger for updating history after izban_journey
+CREATE TRIGGER tr_insert_izban_journey_history
+ON Izban_Journey
+AFTER INSERT
+AS
+BEGIN
+    DECLARE @Card_id INT;
+    SELECT @Card_id = Card_id
+    FROM inserted;
+
+    INSERT INTO History (Card_id, operation_date, operation_time, transportation_type, departure_place, destination, payment_amount)
+    SELECT i.Card_id, GETDATE(), GETDATE(), 'İzban', iv.first_station_name, iv.last_station_name, iv.refund_amount
+    FROM inserted i
+    INNER JOIN Izban_Voyage iv ON i.izban_id = iv.izban_id AND i.voyage_instance_id = iv.voyage_instance_id
+    PRINT 'History is updated for Card_id: ' + CAST(@Card_id AS VARCHAR);
+END;
+--Bunda payment amount ve konumlardan ötürü sıkıntı var. Type_compatible issues
+CREATE TRIGGER tr_insert_marti_rezervation_history
+ON Marti_Rezervation
+AFTER INSERT
+AS
+BEGIN
+    DECLARE @Card_id INT;
+    SELECT @Card_id = Card_id
+    FROM inserted;
+
+    INSERT INTO History (Card_id, operation_date, operation_time, transportation_type, departure_place, destination, payment_amount)
+    SELECT i.Card_id, GETDATE(), GETDATE(), 'Marti', 'Check marti rezervation', 'Check marti rezervation', m.price_per_minute * DATEDIFF(MINUTE, i.left_time, i.taken_time) 
+    FROM inserted i, Martı m
+    Where i.Marti_id = m.martı_id
+    PRINT 'History is updated for Card_id: ' + CAST(@Card_id AS VARCHAR);
+END;
