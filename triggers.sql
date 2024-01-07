@@ -1,8 +1,10 @@
+--Trigger for updating marti_location_history
 CREATE TRIGGER update_marti_location_history ON Martı
 INSTEAD OF UPDATE
 AS
 BEGIN
     IF UPDATE(current_latitude) OR UPDATE(current_longitude) BEGIN
+        -- Your original insert statement
         INSERT INTO Martı_location_history (Martı_id, date, latitude, longitude, time)
         SELECT
             i.martı_id,
@@ -11,6 +13,11 @@ BEGIN
             i.current_longitude,
             GETDATE()
         FROM INSERTED i;
+
+        -- Send a message
+        DECLARE @Message NVARCHAR(255) = 'Martı location history updated.';
+        PRINT @Message; -- veya RAISEERROR(@Message, 0, 1);
+
     END
 END;
 
