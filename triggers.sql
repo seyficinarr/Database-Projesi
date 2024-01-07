@@ -54,3 +54,48 @@ END
 END;
 GO
 GO
+
+
+-- SQLINES LICENSE FOR EVALUATION USE ONLY
+CREATE TRIGGER update_preferences_after_reservation ON Marti_Rezervation
+AFTER INSERT AS, Train_Ticket, Flight_Ticket, Ferry_Ticket, Car_rent_rezervation
+FOR EACH ROW
+BEGIN
+    DECLARE @preference_id INT;
+
+    -- SQLINES DEMO *** e_id associated with the Card_id
+    -- SQLINES LICENSE FOR EVALUATION USE ONLY
+    SELECT @preference_id = @preference_id
+    FROM Preferences
+    WHERE Card_id = NEW.Card_id;
+
+    -- SQLINES DEMO *** tion type and update preferences accordingly
+    IF NEW.transportation_type = 'Marti' BEGIN
+        UPDATE Preferences
+        SET marti_preference = TRUE
+        WHERE @preference_id = @preference_id;
+    END
+    ELSE IF NEW.transportation_type = 'Train' BEGIN
+        UPDATE Preferences
+        SET train_preference = TRUE
+        WHERE @preference_id = @preference_id;
+    END
+    ELSE IF NEW.transportation_type = 'Flight' BEGIN
+        UPDATE Preferences
+        SET airplane_trip_preference = TRUE
+        WHERE @preference_id = @preference_id;
+    END
+    ELSE IF NEW.transportation_type = 'Ferry' BEGIN
+        UPDATE Preferences
+        SET ferry_preference = TRUE
+        WHERE @preference_id = @preference_id;
+    END
+    ELSE IF NEW.transportation_type = 'Car' BEGIN
+        UPDATE Preferences
+        SET car_rent_preference = TRUE
+        WHERE @preference_id = @preference_id;
+    -- SQLINES DEMO *** ns for other transportation types as needed
+
+    END 
+END;
+//
