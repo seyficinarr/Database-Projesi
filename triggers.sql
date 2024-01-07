@@ -1,16 +1,18 @@
 CREATE TRIGGER update_marti_location_history ON Martı
 INSTEAD OF UPDATE
-  AS
+AS
 BEGIN
-    IF NEW.current_latitude <> OLD.current_latitude OR NEW.current_longitude <> OLD.current_longitude BEGIN
-        -- SQLINES LICENSE FOR EVALUATION USE ONLY
+    IF UPDATE(current_latitude) OR UPDATE(current_longitude) BEGIN
         INSERT INTO Martı_location_history (Martı_id, date, latitude, longitude, time)
-        VALUES (NEW.martı_id, CONVERT(DATE, GETDATE()), NEW.current_latitude, NEW.current_longitude, GETDATE());
-    END 
-END
+        SELECT
+            i.martı_id,
+            CONVERT(DATE, GETDATE()),
+            i.current_latitude,
+            i.current_longitude,
+            GETDATE()
+        FROM INSERTED i;
+    END
 END;
-GO
-GO
 
 -- SQLINES LICENSE FOR EVALUATION USE ONLY
 CREATE TRIGGER track_train_line_instance_changes ON Train_Line_Instance
